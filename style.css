@@ -1,0 +1,1273 @@
+/* ==========================================================================
+   ExoHunt AI - NASA Exoplanet Discovery Engine
+   Vanilla CSS Design System - Modern Clean Scientific / NASA JPL Aerospace Theme
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Color Palette - NASA JPL Clean Slate & Royal Aerospace Blue */
+    --bg-main: #f8fafc;
+    --bg-gradient-start: #f1f5f9;
+    --bg-gradient-end: #e2e8f0;
+    
+    --bg-card: rgba(255, 255, 255, 0.88);
+    --bg-card-hover: rgba(255, 255, 255, 1);
+    --bg-card-solid: #ffffff;
+    
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --border-focus: #3b82f6;
+    
+    --text-main: #0f172a;        /* Slate 900 - Deepest Navy/Black */
+    --text-secondary: #334155;   /* Slate 700 */
+    --text-muted: #64748b;       /* Slate 500 */
+    --text-dim: #94a3b8;         /* Slate 400 */
+    
+    /* Aerospace Accent Colors */
+    --nasa-blue: #2563eb;        /* Royal Blue 600 */
+    --nasa-blue-dark: #1e40af;   /* Royal Blue 800 */
+    --nasa-blue-light: #eff6ff;  /* Blue 50 */
+    
+    --ai-indigo: #4f46e5;        /* Indigo 600 */
+    --ai-indigo-light: #eef2ff;  /* Indigo 50 */
+    
+    --star-gold: #d97706;        /* Amber 600 */
+    --star-gold-light: #fef3c7;  /* Amber 100 */
+    
+    /* Status Colors */
+    --status-confirmed: #059669; /* Emerald 600 */
+    --status-confirmed-bg: #ecfdf5;
+    --status-confirmed-border: #6ee7b7;
+    
+    --status-candidate: #0284c7; /* Sky 600 */
+    --status-candidate-bg: #e0f2fe;
+    --status-candidate-border: #7dd3fc;
+    
+    --status-false-pos: #dc2626; /* Red 600 */
+    --status-false-pos-bg: #fef2f2;
+    --status-false-pos-border: #fca5a5;
+    
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Transitions & Shadows */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+    --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+    --shadow-xl: 0 20px 35px -10px rgba(15, 23, 42, 0.12), 0 10px 15px -5px rgba(15, 23, 42, 0.04);
+    --shadow-glow-blue: 0 0 25px rgba(37, 99, 235, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(at 10% 10%, rgba(37, 99, 235, 0.07) 0px, transparent 50%),
+        radial-gradient(at 90% 20%, rgba(79, 70, 229, 0.06) 0px, transparent 50%),
+        radial-gradient(at 50% 90%, rgba(14, 165, 233, 0.05) 0px, transparent 60%);
+    background-attachment: fixed;
+}
+
+/* Background Constellation / Neural Net Particle Canvas */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none !important;
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0.8rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.2));
+    animation: float 4s ease-in-out infinite;
+}
+
+.brand-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.45rem;
+    background: linear-gradient(135deg, var(--nasa-blue-dark) 0%, var(--nasa-blue) 60%, var(--ai-indigo) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.nav-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--status-confirmed-bg);
+    border: 1px solid var(--status-confirmed-border);
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--status-confirmed);
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.1);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--status-confirmed);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* Pill-box Navigation Tabs */
+.nav-tabs {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    background: #f1f5f9;
+    padding: 0.6rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-medium);
+    margin: 1.8rem auto 0 auto;
+    max-width: 1600px;
+    width: calc(100% - 5rem);
+    box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.04);
+}
+
+.tab-btn {
+    position: relative;
+    z-index: 101;
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: normal;
+    user-select: none;
+}
+
+.tab-btn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.tab-btn.active {
+    color: var(--nasa-blue-dark);
+    background: #ffffff;
+    border-color: #bfdbfe;
+    font-weight: 600;
+    text-shadow: 0 0 0.5px var(--nasa-blue-dark);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   MAIN CONTAINER & TAB PANELS
+   ========================================================================== */
+.main-container {
+    position: relative;
+    z-index: 10;
+    padding: 2.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* ==========================================================================
+   TAB 1: DASHBOARD OVERVIEW
+   ========================================================================== */
+.hero-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 50%, #eef2ff 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 24px;
+    padding: 3.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.hero-banner::after {
+    content: '🪐';
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16rem;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    line-height: 1.25;
+    color: var(--text-main);
+    max-width: 950px;
+}
+
+.hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    max-width: 850px;
+    margin-bottom: 1.8rem;
+    line-height: 1.7;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3.5rem;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--nasa-blue);
+    box-shadow: var(--shadow-xl);
+    background: #ffffff;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--nasa-blue);
+    margin-bottom: 0.4rem;
+}
+
+.stat-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.stat-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+/* Section Headings */
+.section-heading {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-main);
+}
+
+.section-heading::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--border-medium) 0%, transparent 100%);
+}
+
+/* Model Architecture Cards */
+.models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2.2rem;
+}
+
+.model-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 22px;
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+}
+
+.model-card:hover {
+    border-color: var(--nasa-blue);
+    box-shadow: var(--shadow-xl);
+    background: #ffffff;
+    transform: translateY(-4px);
+}
+
+.model-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.4rem;
+}
+
+.model-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.model-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tag-baseline { background: var(--star-gold-light); color: var(--star-gold); border: 1px solid #fde68a; }
+.tag-physics { background: var(--nasa-blue-light); color: var(--nasa-blue); border: 1px solid #bfdbfe; }
+.tag-dl { background: var(--ai-indigo-light); color: var(--ai-indigo); border: 1px solid #c7d2fe; }
+
+.model-body {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.6rem;
+    line-height: 1.7;
+}
+
+.model-features-list {
+    list-style: none;
+    margin-top: 1.2rem;
+}
+
+.model-features-list li {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.model-features-list li::before {
+    content: '✓';
+    color: var(--nasa-blue);
+    font-weight: 800;
+}
+
+.model-footer {
+    padding-top: 1.4rem;
+    border-top: 1px dashed var(--border-medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accuracy-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.accuracy-val {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--status-confirmed);
+}
+
+/* ==========================================================================
+   TAB 2: INFERENCE PLAYGROUND (A/B TESTING)
+   ========================================================================== */
+.playground-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2.2rem;
+    align-items: start;
+}
+
+@media (max-width: 1100px) {
+    .playground-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 22px;
+    padding: 2.2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.panel-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-main);
+}
+
+/* Preset Target Selector */
+.preset-section {
+    margin-bottom: 2.2rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.preset-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.preset-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.preset-btn {
+    background: #f1f5f9;
+    border: 1px solid var(--border-medium);
+    color: var(--text-main);
+    padding: 0.6rem 1.1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preset-btn:hover {
+    border-color: var(--nasa-blue);
+    background: var(--nasa-blue-light);
+    color: var(--nasa-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.preset-btn.active {
+    background: var(--nasa-blue);
+    border-color: var(--nasa-blue-dark);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* Telemetry Sliders / Inputs */
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: #f8fafc;
+    padding: 1.2rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+}
+
+.input-row:hover {
+    border-color: #cbd5e1;
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+.input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.input-val-display {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--nasa-blue-dark);
+    background: var(--nasa-blue-light);
+    padding: 0.25rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid #bfdbfe;
+}
+
+/* Custom Range Slider */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #e2e8f0;
+    border-radius: 6px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: var(--nasa-blue);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+    border: 2px solid #ffffff;
+    transition: transform 0.15s, background-color 0.15s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--nasa-blue-dark);
+}
+
+/* Model Switcher (A/B Testing) */
+.model-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2.2rem;
+    background: #f1f5f9;
+    padding: 0.6rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-medium);
+}
+
+.switch-btn {
+    flex: 1;
+    min-width: 150px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.switch-btn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.switch-btn.active {
+    background: var(--nasa-blue);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* Prediction Output Badge */
+.prediction-result-box {
+    background: #ffffff;
+    border: 2px solid var(--border-medium);
+    border-radius: 18px;
+    padding: 2.2rem;
+    text-align: center;
+    margin-bottom: 2.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+}
+
+.prediction-result-box.confirmed {
+    border-color: var(--status-confirmed);
+    background: linear-gradient(135deg, #ffffff 0%, var(--status-confirmed-bg) 100%);
+    box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.15);
+}
+
+.prediction-result-box.candidate {
+    border-color: var(--status-candidate);
+    background: linear-gradient(135deg, #ffffff 0%, var(--status-candidate-bg) 100%);
+    box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.15);
+}
+
+.prediction-result-box.false-positive {
+    border-color: var(--status-false-pos);
+    background: linear-gradient(135deg, #ffffff 0%, var(--status-false-pos-bg) 100%);
+    box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.15);
+}
+
+.pred-status-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.6rem;
+}
+
+.pred-main-title {
+    font-family: var(--font-heading);
+    font-size: 2.3rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.6rem;
+}
+
+.pred-conf-score {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+/* Probability Bars */
+.prob-bars-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2.2rem;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+}
+
+.prob-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.prob-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+.prob-track {
+    width: 100%;
+    height: 14px;
+    background: #e2e8f0;
+    border-radius: 50px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.prob-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fill-confirmed { background: var(--status-confirmed); }
+.fill-candidate { background: var(--status-candidate); }
+.fill-false-pos { background: var(--status-false-pos); }
+
+/* Live Transit Lightcurve Simulator */
+.lightcurve-box {
+    background: #ffffff;
+    border: 1px solid var(--border-medium);
+    border-radius: 18px;
+    padding: 1.8rem;
+    margin-bottom: 2.2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.lightcurve-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.lightcurve-title {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--nasa-blue-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#lightcurve-canvas {
+    width: 100%;
+    height: 220px;
+    background: #0f172a; /* Deep Aerospace Monitor Theme */
+    border-radius: 12px;
+    border: 2px solid var(--border-medium);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Explainable AI Rationale Box */
+.xai-box {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--ai-indigo);
+    border-radius: 14px;
+    padding: 1.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.xai-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.xai-content {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   TAB 3: RESEARCH PLOTS GALLERY & SHAP
+   ========================================================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.plot-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 22px;
+    overflow: hidden;
+    transition: var(--transition-bounce);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md);
+}
+
+.plot-card:hover {
+    border-color: var(--nasa-blue);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-6px);
+}
+
+/* Framed Scientific Print Style for Plots */
+.plot-img-container {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    background: #ffffff;
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--border-light);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plot-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.plot-card:hover .plot-img-container img {
+    transform: scale(1.05);
+}
+
+.plot-zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(37, 99, 235, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.plot-card:hover .plot-zoom-overlay {
+    opacity: 1;
+}
+
+.zoom-icon {
+    background: var(--nasa-blue-dark);
+    color: #ffffff;
+    padding: 0.8rem 1.6rem;
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+}
+
+.plot-info {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plot-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.8rem;
+}
+
+.plot-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.plot-insight {
+    background: var(--star-gold-light);
+    border: 1px solid #fde68a;
+    border-left: 4px solid var(--star-gold);
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #78350f;
+    line-height: 1.6;
+}
+
+.insight-tag {
+    font-weight: 800;
+    color: #92400e;
+}
+
+/* Lightbox Modal for Plots */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+    background: #ffffff;
+    border: 2px solid var(--nasa-blue);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: var(--nasa-blue);
+    color: #ffffff;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: 800;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    transition: var(--transition-bounce);
+}
+
+.modal-close:hover {
+    transform: scale(1.15);
+    background: var(--nasa-blue-dark);
+}
+
+/* ==========================================================================
+   TAB 4: DATA LEAKAGE DEEP DIVE
+   ========================================================================== */
+.leakage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.leakage-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: 2.8rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.leakage-card.highlight-red {
+    border-color: var(--status-false-pos-border);
+    background: linear-gradient(135deg, #ffffff 0%, var(--status-false-pos-bg) 100%);
+}
+
+.leakage-card.highlight-green {
+    border-color: var(--status-confirmed-border);
+    background: linear-gradient(135deg, #ffffff 0%, var(--status-confirmed-bg) 100%);
+}
+
+.leakage-step-title {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.leakage-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.6rem;
+    line-height: 1.8;
+}
+
+.flag-box-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.8rem;
+}
+
+.flag-box {
+    background: #ffffff;
+    border: 1px solid var(--status-false-pos-border);
+    border-radius: 14px;
+    padding: 1.4rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.flag-name {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    color: var(--status-false-pos);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.flag-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Comparison Table */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 1.8rem;
+}
+
+.leakage-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.leakage-table th, .leakage-table td {
+    padding: 1.4rem 1.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.leakage-table th {
+    background: #f8fafc;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--text-main);
+    font-size: 1.05rem;
+}
+
+.leakage-table td {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.acc-fake { color: var(--status-false-pos); font-weight: 800; font-family: var(--font-mono); font-size: 1.15rem; }
+.acc-real { color: var(--status-confirmed); font-weight: 800; font-family: var(--font-mono); font-size: 1.15rem; }
+
+/* ==========================================================================
+   TAB 5: MODEL WEIGHTS & EXPORT
+   ========================================================================== */
+.weights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.8rem;
+}
+
+.weight-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-md);
+}
+
+.weight-card:hover {
+    transform: scale(1.03);
+    border-color: var(--nasa-blue);
+    box-shadow: var(--shadow-xl);
+}
+
+.weight-icon {
+    font-size: 2.8rem;
+    background: var(--nasa-blue-light);
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #bfdbfe;
+    flex-shrink: 0;
+}
+
+.weight-details {
+    flex: 1;
+}
+
+.weight-filename {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+    word-break: break-all;
+}
+
+.weight-meta {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+
+.weight-size-badge {
+    display: inline-block;
+    background: #f1f5f9;
+    color: var(--nasa-blue-dark);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    border: 1px solid var(--border-medium);
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.25); }
+}
+
+/* Responsive Footer */
+.footer {
+    margin-top: 6rem;
+    padding: 3.5rem 2.5rem;
+    background: #ffffff;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.footer-highlight {
+    color: var(--nasa-blue-dark);
+    font-weight: 700;
+}
